@@ -1,0 +1,75 @@
+@use "./vars";
+@use "./reset";
+
+.bg-accent {
+  background: rgb(255, 45, 131) !important;
+  background-color: rgb(255, 45, 131) !important;
+  span {
+    color: white;
+    border: none;
+  }
+}
+.btn-wrapper {
+  img {
+    cursor: pointer;
+  }
+}
+.btn-accent {
+  background: rgb(255, 45, 131);
+}
+.info {
+  max-width: 610px;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 150px;
+}
+.title {
+  color: white;
+  font-size: 32px;
+  line-height: 1.5;
+  padding-bottom: 30px;
+  text-align: center;
+}
+.line {
+  width: 100px;
+  height: 2px;
+  background: rgb(255, 45, 131);
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 30px;
+}
+.el-button {
+  background: rgb(255, 45, 131);
+}
+.color-accent {
+  color: vars.$accent;
+}
+
+.color-secondary {
+  background: vars.$secondary-light;
+}
+.btn-accent {
+  background: vars.$accent;
+}
+.cocktail-list {
+  gap: 10px;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  max-height: 60dvh;
+  overflow: hidden;
+  overflow-y: scroll;
+
+  img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+
+  h2 {
+    margin-top: 10px;
+    font-size: 18px;
+    text-align: center;
+  }
+}
