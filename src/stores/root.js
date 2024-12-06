@@ -4,8 +4,11 @@ import axios from "axios";
 import { INGREDIENT_URL, COCTAILS_BY_INGREDIENT_URL } from "@/const/api";
 
 export const useCounterStore = defineStore("root", () => {
-  const ingredients = ref([]); // Используем ref для реактивного состояния
-  const coctails = ref([]);
+  const ingredients = ref([]); // Список ингредиентов
+  const coctails = ref([]); // Список коктейлей
+  const ingredient = ref(null); // Выбранный ингредиент
+
+  // Функция для получения списка ингредиентов
   async function getIngredients() {
     try {
       const response = await axios.get(INGREDIENT_URL);
@@ -15,16 +18,25 @@ export const useCounterStore = defineStore("root", () => {
       console.error("Error fetching ingredients:", error);
     }
   }
-  async function getCoctails(ingradient) {
+
+  // Функция для получения списка коктейлей по ингредиенту
+  async function getCoctails(selectedIngredient) {
     try {
       const response = await axios.get(
-        `${COCTAILS_BY_INGREDIENT_URL}${ingradient}`
+        `${COCTAILS_BY_INGREDIENT_URL}${selectedIngredient}`
       );
       coctails.value = response.data.drinks || [];
+      ingredient.value = selectedIngredient; // Сохраняем выбранный ингредиент
       console.log("Fetched coctails:", coctails.value);
     } catch (error) {
       console.error("Error fetching coctails:", error);
     }
+  }
+
+  // Функция для установки выбранного ингредиента
+  function setIngredient(selectedIngredient) {
+    ingredient.value = selectedIngredient;
+    console.log("Set ingredient:", ingredient.value);
   }
 
   return {
@@ -32,5 +44,7 @@ export const useCounterStore = defineStore("root", () => {
     getIngredients,
     coctails,
     getCoctails,
+    ingredient,
+    setIngredient,
   };
 });
